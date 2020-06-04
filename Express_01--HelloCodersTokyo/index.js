@@ -3,8 +3,8 @@ const app = express();
 var bodyParser = require('body-parser');
 var userRoute = require('./routes/user.route');
 
-app.use(bodyParser.json()) // for parsing application/json
-app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 const port = 3000;
 
