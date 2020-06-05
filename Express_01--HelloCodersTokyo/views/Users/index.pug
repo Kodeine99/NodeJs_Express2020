@@ -2,7 +2,7 @@ extends ../layouts/common
 
 block content
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="http://localhost:3000/">
             <img src="../images/logo.png" alt="">
         </a>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -14,15 +14,23 @@ block content
         </div>
     </div>
     </nav>
-    h1 Users
+    .container.pt-5
+        h1 
+            span.mr-4 Users 
+            a.btn.btn-primary.pb-2(href="/Users/Create") New
+        .d-flex.align-item-center
+            form.ml-auto(action="Users/search" method="GET" class="d-flex")
+                input(type="text" name="q" value="" class="form-control")
+                button(class="btn btn-primary ml-2") Search
+        table.table
+            tr
+                th Name
+                th Phone
+                th Actions
 
-    a(href="/USers/Create") New
-    form(action="Users/search" method="GET" class="d-flex")
-        input(type="text" name="q" value="" class="form-control")
-        button(class="btn btn-primary ml-2") Search
-    ul 
-        each user in Users
-            li
-                span= user.name
-                span &nbsp;
-                a(href='/Users/' +user.id) View
+            each user in Users
+                tr
+                    td= user.name
+                    td= user.phone
+                    td
+                        a.btn.btn-outline-info(href='/Users/' +user.id) View
