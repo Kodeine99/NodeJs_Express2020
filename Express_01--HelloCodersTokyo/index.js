@@ -2,10 +2,14 @@ const express = require('express');
 const app = express();
 var bodyParser = require('body-parser');
 var userRoute = require('./routes/user.route');
+var cookieParser = require('cookie-parser');
+var authRoute = require('./routes/auth.route');
+var authMiddleware = require('./middlewares/auth.middleware');
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(express.static('public'));
+app.use(cookieParser());
 
 const port = 3000;
 
@@ -18,7 +22,11 @@ app.get('/', function (req, res) {
     });
 });
 
-app.use('/Users', userRoute);
+app.use('/Users', authMiddleware.requireAuth, userRoute);
+app.use('/auth/', authRoute);
+
 app.listen(port, function () {
     console.log('Server listening on port ' + port);
-})
+});
+
+
