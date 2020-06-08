@@ -1,3 +1,4 @@
+var md5 = require('md5');
 var db = require('../db');
 
 // Đưa logic xử lí của hàm vào trong file controller theo mô hình MVC (design pattern)
@@ -19,7 +20,8 @@ module.exports.postLogin = function (req, res) {
         return;
     }
 
-    if (user.password !== password) {
+    var hashedPassword = md5(password);
+    if (user.password !== hashedPassword) {
         res.render('auth/login', {
             errors: ['Wrong password'],
 
@@ -27,6 +29,8 @@ module.exports.postLogin = function (req, res) {
         });
         return;
     }
-    res.cookie('userId', user.id);
+    res.cookie('userId', user.id, {
+        signed: true
+    });
     res.redirect('/Users');
 }

@@ -9,7 +9,7 @@ var authMiddleware = require('./middlewares/auth.middleware');
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(express.static('public'));
-app.use(cookieParser());
+app.use(cookieParser('gdhasgd3152ajs'));
 
 const port = 3000;
 
