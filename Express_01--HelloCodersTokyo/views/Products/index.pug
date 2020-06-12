@@ -1,0 +1,52 @@
+extends ../layouts/common
+
+block content
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="http://localhost:3000/">
+            <img src="../images/logo.png" alt="">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+            <a class="nav-item nav-link " href="http://localhost:3000/">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link " href="http://localhost:3000/Users">Users<span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link active" href="http://localhost:3000/Products#">Products</a>
+            <a class="nav-item nav-link" href="#">Images</a>
+        </div>
+    </div>
+    </nav>
+    .container.pt-5
+        h1 
+            span.mr-4 Products 
+        .d-flex.align-item-center
+            form.ml-auto(action="Users/search" method="GET" class="d-flex")
+                input(type="text" name="q" value="" class="form-control")
+                button(class="btn btn-primary ml-2") Search
+        .row
+            each product in Products
+                .col-md-3
+                    .card(style='width: 15rem;')
+                        img.card-img-top(src='https://picsum.photos/150', alt='Card image cap')
+                        .card-body
+                            h5.card-title #{product.name}
+                            p.card-text
+                                | Some quick example text to build on the card title and make up the bulk of the card&apos;s content.
+                            a.btn.btn-primary(href='#') Add to card
+    .container.pt-5
+        .text-center
+            nav(aria-label='Page navigation example')
+                ul.pagination.justify-content-center
+                    li.page-item
+                        a.page-link(href='/Products?page=' + prevPage, aria-label='Previous')
+                            span(aria-hidden='true') &laquo;
+                            span.sr-only Previous
+                    li.page-item
+                        a.page-link(href='' ) #{prevPage}
+                    li.page-item
+                        a.page-link(href='/Products?page=' + page) #{page}
+                    li.page-item
+                        a.page-link(href='/Products?page=' + nextPage) #{nextPage}
+                    li.page-item
+                        a.page-link(href='/Products?page=' + nextPage, aria-label='Next')
+                            span(aria-hidden='true') &raquo;
+                            span.sr-only Next
+        
