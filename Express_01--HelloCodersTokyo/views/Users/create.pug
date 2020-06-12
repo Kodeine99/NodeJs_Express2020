@@ -21,7 +21,7 @@ block content
             each error in errors
                 .alert.alert-danger= error
 
-        form(action="Create" method="POST")
+        form(action="Create" method="POST", enctype="multipart/form-data")
             .form-group
                 label(for="name") Name
                 input#name.form-control(type="text" name="name" value= values ? values.name : "")
@@ -29,5 +29,9 @@ block content
             .form-group
                 label(for="phone") Phone 
                 input#phone.form-control(type="text" name="phone" value= values ? values.phone : "")
+
+            .form-group
+                label(for="avatar") Phone 
+                input#phone.form-control-file(type="file" name="avatar" value= values ? values.avatar : "")
 
             button.btn.btn-success.mt-2 Create
