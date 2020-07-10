@@ -30,7 +30,7 @@ block content
                             h5.card-title #{product.name}
                             p.card-text
                                 | Some quick example text to build on the card title and make up the bulk of the card&apos;s content.
-                            a.btn.btn-primary(href='#') Add to card
+                            a.btn.btn-primary(href='/cart/add/' + product.id) Add to card
     .container.pt-5
         .text-center
             nav(aria-label='Page navigation example')
